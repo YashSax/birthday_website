@@ -10,19 +10,22 @@ postForm.addEventListener("submit", function(event) {
 
     for (const image of imagesInput.files) {
         if (image) {
-            imageURLs.push(URL.createObjectURL(image)));
+            imageURLs.push(URL.createObjectURL(image));
         }
     }
 
     const newPost = new Post(author, body, imageURLs);
-    let current_posts = JSON.parse(localStorage.getItem("posts"))
-    if (current_posts === null) {
-        current_posts = []
-    }
-    current_posts.push(newPost)
-    localStorage.setItem("posts", JSON.stringify(current_posts))
-
-    // window.location.href = "index.html";
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    var docRef = db.collection("Messages").doc(randomNumber.toString());
+    docRef.get().then(function(doc) {
+        docRef.set({
+            author: author,
+            body: body
+        }).then(function(doc) {
+            console.log("posted!");
+            window.location.href = "index.html";
+        });
+    });
 });
 
 function returnToMain() {
