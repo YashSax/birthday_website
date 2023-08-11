@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Create Post</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Create Post</h1>
+    </div>
+    <div class="create-post-form">
+        <form id="postForm">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required><br><br>
+
+            <label for="body">Message:</label><br>
+            <textarea id="body" name="body" rows="4" cols="50" required></textarea><br><br>
+
+            <label for="images">Images:</label>
+            <input type="file" id="images" name="images" accept="image/*" multiple><br><br>
+
+            <button type="submit">Post</button>
+            <button type="button" onclick="returnToMain()">Return</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="create-post.js"></script>
+</body>
+</html>
