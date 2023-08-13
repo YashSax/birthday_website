@@ -25,41 +25,53 @@ function goToCreatePost() {
 }
 
 async function renderPosts() {
-    const postsContainer = document.getElementById("postsContainer");
-    postsContainer.innerHTML = ""; // Clear existing posts
+    for (let i = 1; i < 4; i++) {
+        const columnContainer = document.getElementById(`column${i}`);
+        columnContainer.innerHTML = ""; // Clear existing posts
+    }
 
     // Load in posts from firebase.
     const snapshot = await firebase.firestore().collection('Messages').get()
     const posts = snapshot.docs.map(doc => doc.data());
     console.log(posts);
 
+    let col_heights = [0, 0, 0];
+
     for (const post of posts) {
+        console.log(col_heights);
+        let min_height = Math.min(...col_heights);
+        let postContainer;
+        let chosenColumn;
+        if (col_heights[0] == min_height) {
+            postContainer = document.getElementById("column1");
+            chosenColumn = 0;
+        } else if (col_heights[1] == min_height) {
+            postContainer = document.getElementById("column2");
+            chosenColumn = 1;
+        } else {
+            postContainer = document.getElementById("column3");
+            chosenColumn = 2;
+        }
+        
         const postElement = document.createElement("div");
         postElement.classList.add("post");
-
+        
+        const bodyElement = document.createElement("p");
+        bodyElement.textContent = `${post.body}`;
+        postElement.appendChild(bodyElement);
+        
         const authorElement = document.createElement("p");
-        authorElement.textContent = `Author: ${post.author}`;
+        authorElement.textContent = `- ${post.author}`;
         postElement.appendChild(authorElement);
 
-        const bodyElement = document.createElement("p");
-        bodyElement.textContent = `Body: ${post.body}`;
-        postElement.appendChild(bodyElement);
-
-        // if (post.images.length > 0) {
-        //     // Add each image by reading their URL.
-        //     const imagesElement = document.createElement("div");
-        //     imagesElement.classList.add("images");
-        //     for (const imageURL of post.images) {
-        //         const imageElement = document.createElement("img");
-        //         imageElement.src = imageURL;
-        //         imageElement.style.display = "block";
-        //         imagesElement.appendChild(imageElement);
-        //     }
-        //     postElement.appendChild(imagesElement);
-        // }
-        
         if (post.author != "" && post.body != "") {
-            postsContainer.appendChild(postElement);
+            postContainer.appendChild(postElement);
+            
+            let boundingRect = postElement.getBoundingClientRect();
+            col_heights[chosenColumn] = Math.max(col_heights[chosenColumn], boundingRect.y + boundingRect.height);
+            
+            console.log("Chosen column: ", chosenColumn);
+            console.log(boundingRect);
         }
     }
 }
