@@ -6,13 +6,6 @@ postForm.addEventListener("submit", function(event) {
 
     const author = postForm.author.value;
     const body = postForm.body.value;
-    const imagesInput = postForm.images;
-
-    for (const image of imagesInput.files) {
-        if (image) {
-            imageURLs.push(URL.createObjectURL(image));
-        }
-    }
 
     const newPost = new Post(author, body, imageURLs);
     const randomNumber = Math.floor(Math.random() * 1000000);
