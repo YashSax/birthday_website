@@ -29,6 +29,11 @@ body {
     font-size: 22.5px;
 }
 
+.postBody {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
 .images img {
     max-width: 75px;
     max-height: 75px;

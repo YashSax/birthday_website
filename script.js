@@ -57,7 +57,8 @@ async function renderPosts() {
         postElement.classList.add("post");
         
         const bodyElement = document.createElement("p");
-        bodyElement.textContent = `${post.body}`;
+        bodyElement.classList.add("postBody");
+        bodyElement.textContent = post.body;
         postElement.appendChild(bodyElement);
         
         const authorElement = document.createElement("p");
