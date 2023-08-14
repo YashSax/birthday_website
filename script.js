@@ -33,12 +33,10 @@ async function renderPosts() {
     // Load in posts from firebase.
     const snapshot = await firebase.firestore().collection('Messages').get()
     const posts = snapshot.docs.map(doc => doc.data());
-    console.log(posts);
 
     let col_heights = [0, 0, 0];
 
     for (const post of posts) {
-        console.log(col_heights);
         let min_height = Math.min(...col_heights);
         let postContainer;
         let chosenColumn;
@@ -71,9 +69,6 @@ async function renderPosts() {
             
             let boundingRect = postElement.getBoundingClientRect();
             col_heights[chosenColumn] = Math.max(col_heights[chosenColumn], boundingRect.y + boundingRect.height);
-            
-            console.log("Chosen column: ", chosenColumn);
-            console.log(boundingRect);
         }
     }
 }

@@ -22,7 +22,6 @@ postForm.addEventListener("submit", function(event) {
             author: author,
             body: body
         }).then(function(doc) {
-            console.log("posted!");
             window.location.href = "index.html";
         });
     });
