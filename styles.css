@@ -22,9 +22,10 @@ body {
     font-family: 'Quicksand', sans-serif;
     padding: 37.5px 15px;
     margin: 7.5px;
+    margin-bottom: 15px;
     background-color: #fff;
     color: black;
-    border-radius: 7.5px;
+    border-radius: 10px;
     font-size: 22.5px;
 }
 
