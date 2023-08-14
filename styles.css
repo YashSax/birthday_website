@@ -34,6 +34,10 @@ body {
     overflow-wrap: break-word;
 }
 
+.postAuthor {
+    color: grey;
+}
+
 .images img {
     max-width: 75px;
     max-height: 75px;

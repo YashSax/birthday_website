@@ -63,6 +63,7 @@ async function renderPosts() {
         
         const authorElement = document.createElement("p");
         authorElement.textContent = `- ${post.author}`;
+        authorElement.classList.add("postAuthor");
         postElement.appendChild(authorElement);
 
         if (post.author != "" && post.body != "") {
