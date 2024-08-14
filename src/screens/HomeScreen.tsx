@@ -32,7 +32,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <VFlex className="w-screen p-4 bg-[#bde0fe] overflow-y-auto gap-8">
+    <VFlex className="w-full p-4 bg-[#bde0fe] overflow-y-auto gap-8">
       <HFlex className="relative w-full h-24 bg-[#a2d2ff] rounded-md justify-center items-center">
         <Button className="absolute -bottom-5 left-10" onClick={handleAddPostClick}>Add Post</Button>
         <Text size={"displayM"}>Happy Birthday, Cindy!</Text>
