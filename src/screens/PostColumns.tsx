@@ -2,6 +2,7 @@ import HFlex from "@/components/layout/HFlex";
 import VFlex from "@/components/layout/VFlex";
 import { PostModel } from "@/model/PostModel";
 import Post from "./Post";
+import { isMobile } from 'react-device-detect';
 
 function estimateLength(s: string, base64_image: string) {
   // Estimates the number of lines a string will take up
@@ -11,7 +12,7 @@ function estimateLength(s: string, base64_image: string) {
   let image_height_estimate = 0;
 
   if (base64_image) {
-    image_height_estimate = 100/30;
+    image_height_estimate = 100 / 30;
   }
   console.log(image_height_estimate * 30)
   return s.length / chars_per_line + num_newlines + image_height_estimate;
@@ -54,7 +55,17 @@ export default function PostColumns({ postsList }: { postsList: PostModel[] }) {
 
   return (
     <HFlex className="w-full h-full gap-4">
-      <VFlex className="flex-1 gap-4">
+      {isMobile ? <><VFlex className="flex-1 gap-4">
+        {sortedPosts.map((post: PostModel, ind: number) => (
+          <Post
+            key={ind}
+            body={post.body}
+            date={post.date}
+            author={post.author}
+            base64_image={post.base64_image}
+          />
+        ))}
+      </VFlex></> : <><VFlex className="flex-1 gap-4">
         {col1.map((post: PostModel, ind: number) => (
           <Post
             key={ind}
@@ -65,28 +76,28 @@ export default function PostColumns({ postsList }: { postsList: PostModel[] }) {
           />
         ))}
       </VFlex>
-      <VFlex className="flex-1 gap-4">
-        {col2.map((post: PostModel, ind: number) => (
-          <Post
-            key={ind}
-            body={post.body}
-            date={post.date}
-            author={post.author}
-            base64_image={post.base64_image}
-          />
-        ))}
-      </VFlex>
-      <VFlex className="flex-1 gap-4">
-        {col3.map((post: PostModel, ind: number) => (
-          <Post
-            key={ind}
-            body={post.body}
-            date={post.date}
-            author={post.author}
-            base64_image={post.base64_image}
-          />
-        ))}
-      </VFlex>
+        <VFlex className="flex-1 gap-4">
+          {col2.map((post: PostModel, ind: number) => (
+            <Post
+              key={ind}
+              body={post.body}
+              date={post.date}
+              author={post.author}
+              base64_image={post.base64_image}
+            />
+          ))}
+        </VFlex>
+        <VFlex className="flex-1 gap-4">
+          {col3.map((post: PostModel, ind: number) => (
+            <Post
+              key={ind}
+              body={post.body}
+              date={post.date}
+              author={post.author}
+              base64_image={post.base64_image}
+            />
+          ))}
+        </VFlex></>}
     </HFlex>
   );
 }
