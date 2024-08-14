@@ -24,7 +24,7 @@ export type TextAreaProps = {
   VariantProps<typeof variants>;
 
 export default forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ variant, resizable = true, maxHeight, className, ...props }, ref) => {
+  ({ variant, resizable = true, maxHeight, className, ...props }) => {
     const internalRef = React.useRef<HTMLTextAreaElement>(null);
 
     React.useEffect(() => {
