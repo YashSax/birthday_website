@@ -31,7 +31,7 @@ export default function SubmitPostScreen() {
         const randomNumber = Math.floor(Math.random() * 1000000);
 
         db.collection("Messages").doc(randomNumber.toString()).set({
-            name: name,
+            author: name,
             body: message,
             date: formattedDate,
             base64_image: image
