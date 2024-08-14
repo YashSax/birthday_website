@@ -5,7 +5,7 @@ import SubmitPostScreen from "./screens/SubmitPostScreen";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={"/"}>
       <Routes>
         <Route
           index
