@@ -49,7 +49,8 @@ function splitIntoColumns(postsList: PostModel[]) {
 }
 
 export default function PostColumns({ postsList }: { postsList: PostModel[] }) {
-  const { col1, col2, col3 } = splitIntoColumns(postsList);
+  const sortedPosts = postsList.sort((a, b) => parseInt(b.date) - parseInt(a.date));
+  const { col1, col2, col3 } = splitIntoColumns(sortedPosts);
 
   return (
     <HFlex className="w-full h-full gap-4">
