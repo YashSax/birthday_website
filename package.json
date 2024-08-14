@@ -2,7 +2,7 @@
   "name": "accordance-app-v2",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://birthdaycondi.com",
+  "homepage": "https://www.birthdaycondi.com/",
   "type": "module",
   "scripts": {
     "dev": "vite",
